@@ -35,12 +35,4 @@ class _01_03_URLify {
 
         return chars;
     }
-
-    char[] increaseSize(char[] chars, int trueLength){
-        char[] newArr = new char[chars.length + 2];
-        for(int i = 0; i < trueLength; i++){
-            newArr[i] = chars[i];
-        }
-        return newArr;
-    }
 }
