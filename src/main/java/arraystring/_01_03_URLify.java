@@ -12,6 +12,35 @@ package arraystring;
  */
 class _01_03_URLify {
     char[] urlify(char[] chars, int trueLength) {
-        throw new UnsupportedOperationException();
+        for(int i = 0; i < chars.length; i++){
+            char character = chars[i];
+
+            if(character == ' '){
+                // shift characters to right of space by 2 (to account for two additional chars) 
+                // to the right
+                for(int j = trueLength - 1; j > i; j--){
+                    chars[j + 2] = chars[j];
+                }
+                trueLength += 2;
+
+                // add URL chars
+                chars[i] = '%';
+                chars[i + 1] = '2';
+                chars[i + 2] = '0';
+
+                // forward index by 2 to skip added chars
+                i += 2;
+            }
+        }
+
+        return chars;
+    }
+
+    char[] increaseSize(char[] chars, int trueLength){
+        char[] newArr = new char[chars.length + 2];
+        for(int i = 0; i < trueLength; i++){
+            newArr[i] = chars[i];
+        }
+        return newArr;
     }
 }

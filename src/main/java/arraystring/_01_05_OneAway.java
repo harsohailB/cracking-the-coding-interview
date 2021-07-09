@@ -13,7 +13,40 @@ package arraystring;
  */
 class _01_05_OneAway {
     boolean isOneAway(String a, String b) {
-        throw new UnsupportedOperationException();
-    }
+        int charDiff = b.length() - a.length();
+        if(charDiff > 1){
+            return false;
+        }
 
+        if(charDiff == 1){ // add (maybe an edit)
+            for(int i = 0; i < b.length(); i++){
+                String bRemoved = b.substring(0, i) + b.substring(i + 1);
+                if(bRemoved.equals(a)){
+                    return true;
+                }
+            }
+        }else if(charDiff == -1){ // delete (maybe an edit)
+            for(int i = 0; i < a.length(); i++){
+                String aRemoved = a.substring(0, i) + a.substring(i + 1);
+                if(aRemoved.equals(b)){
+                    return true;
+                }
+            }
+        }else{ // edit (potentially more than 1)
+            int editCount = 0;
+            
+            for(int i = 0; i < a.length(); i++){
+                if(a.charAt(i) != b.charAt(i)){
+                    editCount++;
+                    if(editCount > 1){
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
 }
